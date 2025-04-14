@@ -5,7 +5,7 @@
     # utils
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-config-modules.url = "github:chadac/nix-config-modules";
-    
+
     # wsl specfic 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
@@ -19,25 +19,27 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { flake-parts, ... }@inputs: let 
-    inherit (builtins) match pathExists filter readDir attrNames baseNameOf map;
+  outputs = { flake-parts, ... }@inputs:
+    let
+      inherit (builtins)
+        match pathExists filter readDir attrNames baseNameOf map;
 
-    canImport = path: let 
-      entry = baseNameOf path;
-    in 
-      match ".*\\.nix$" entry != null || pathExists (path + "/default.nix");
+      canImport = path:
+        let entry = baseNameOf path;
+        in match ".*\\.nix$" entry != null
+        || pathExists (path + "/default.nix");
 
-    importAll = dir: 
-      filter canImport  (map (entry: dir + "/${entry}") (attrNames (readDir dir)));
+      importAll = dir:
+        filter canImport
+        (map (entry: dir + "/${entry}") (attrNames (readDir dir)));
 
-    flakeModule = {
-      imports = [
-        inputs.nix-config-modules.flakeModule
-      ]
-      ++ (importAll ./nix-config/apps)
-      ++ (importAll ./nix-config/hosts);
+      flakeModule = {
+        imports = [ inputs.nix-config-modules.flakeModule ]
+          ++ (importAll ./nix-config/apps) ++ (importAll ./nix-config/hosts);
 
-      systems = [];
+        systems = [ ];
+      };
+    in (flake-parts.lib.mkFlake { inherit inputs; } flakeModule) // {
+      inherit flakeModule;
     };
-  in (flake-parts.lib.mkFlake { inherit inputs; } flakeModule) // { inherit flakeModule; };
 }

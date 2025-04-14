@@ -1,13 +1,10 @@
-{ lib, ... }: 
-let 
-  host = "glitch";
+{ lib, ... }:
+let host = "glitch";
 
 in {
   nix-config.hosts.${host} = rec {
     nixos = { pkgs, ... }: {
-      imports = [ 
-        ./etc/nixos/configuration.nix 
-      ];
+      imports = [ ./etc/nixos/configuration.nix ];
 
       users.users.${username}.shell = pkgs.zsh;
       programs.zsh.enable = true;
@@ -23,7 +20,7 @@ in {
 
     kind = "nixos";
     system = "x86_64-linux";
-    
+
     username = "yehvaed";
     homeDirectory = "/home/${username}";
   };

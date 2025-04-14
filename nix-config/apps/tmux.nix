@@ -6,15 +6,15 @@ let
   inherit (lib.strings) removePrefix hasSuffix;
   inherit (lib) findFirst any;
 
-  matchPattern = file:
-    any (pattern: hasSuffix pattern file) [ ".tmux" ];
+  matchPattern = file: any (pattern: hasSuffix pattern file) [ ".tmux" ];
 
   findPluginFile = plugin:
-    let files = map (file: removePrefix plugin.outPath file) (listFilesRecursive plugin.outPath);
+    let
+      files = map (file: removePrefix plugin.outPath file)
+        (listFilesRecursive plugin.outPath);
     in findFirst matchPattern "" files;
 
-  usePlugin = plugin:
-    ''run ${plugin}${findPluginFile plugin}'';
+  usePlugin = plugin: "run ${plugin}${findPluginFile plugin}";
 
 in {
   nix-config.apps.tmux = {
@@ -22,7 +22,7 @@ in {
       programs.tmux = {
         plugins = with pkgs.tmuxPlugins; [
           # bottom bar sections
-          cpu 
+          cpu
           battery
         ];
 

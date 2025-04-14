@@ -2,21 +2,16 @@
   nix-config.apps.neovim = {
     home = {
       programs.neovim = {
-        plugins = [];
+        plugins = [ ];
 
         viAlias = true;
         vimAlias = true;
-
 
         enable = true;
       };
     };
 
-    nixos = { 
-      environment.variables = {
-        EDITOR = "nvim";
-      }; 
-    };
+    nixos = { environment.variables = { EDITOR = "nvim"; }; };
 
     tags = [ "dev" ];
   };

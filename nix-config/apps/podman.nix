@@ -13,9 +13,7 @@
         oci-containers.backend = "podman";
       };
 
-      environment.systemPackages = with pkgs; [ 
-        docker-compose 
-      ];
+      environment.systemPackages = with pkgs; [ docker-compose ];
     };
 
     tags = [ "virt" ];

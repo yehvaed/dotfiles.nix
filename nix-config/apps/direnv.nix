@@ -3,7 +3,7 @@
     home = {
       programs.direnv = {
         enable = true;
-        enableZshIntegration = true;        
+        enableZshIntegration = true;
         nix-direnv.enable = true;
       };
     };

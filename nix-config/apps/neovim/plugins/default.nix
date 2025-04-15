@@ -1,6 +1,6 @@
-{ lib, ... }@inputs: 
-let 
-inherit (builtins)
+{ lib, ... }@inputs:
+let
+  inherit (builtins)
     head listToAttrs readFile map baseNameOf hasAttr getAttr replaceStrings
     filter toFile;
   inherit (lib.filesystem) listFilesRecursive;
@@ -38,13 +38,11 @@ in matchPipe [
         listedConfigFiles = listedConfigFiles;
       }))
 
-      (mergeItem ({ listedConfigFiles, ... }: {
-        configFile = head listedConfigFiles;
-      }))
+      (mergeItem
+        ({ listedConfigFiles, ... }: { configFile = head listedConfigFiles; }))
 
       (mergeItem ({ pname, configFile, ... }: {
-        baseName =
-          replaceStrings [ ".nix" ] [ "" ] (baseNameOf configFile);
+        baseName = replaceStrings [ ".nix" ] [ "" ] (baseNameOf configFile);
       }))
 
       (mergeItem ({ baseName, ... }: {

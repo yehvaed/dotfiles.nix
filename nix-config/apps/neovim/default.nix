@@ -1,33 +1,33 @@
 {
   nix-config.apps.neovim = {
-    home = { pkgs, ... }@inputs:
-      let loader = import ./plugins inputs;
-      in {
+    home = { pkgs, ... }@inputs: {
         programs.neovim = {
-          plugins = loader (with pkgs.vimPlugins; [
-            # ==> @editor/lsp
-            nvim-cmp
-            nvim-lspconfig
-            luasnip
-            cmp-nvim-lsp
-            cmp_luasnip
+          plugins = (import ./plugins/loader.nix inputs) (
+              with pkgs.vimPlugins; [
+              # ==> @editor/lsp
+              nvim-cmp
+              nvim-lspconfig
+              luasnip
+              cmp-nvim-lsp
+              cmp_luasnip
 
-            # ==> @editor/treesitter
-            nvim-treesitter.withAllGrammars
+              # ==> @editor/treesitter
+              nvim-treesitter.withAllGrammars
 
-            # ==> @editor
-            neo-tree-nvim
-            trouble-nvim
+              # ==> @editor
+              neo-tree-nvim
+              trouble-nvim
 
-            # ==> @pickers
-            fzf-lua
+              # ==> @pickers
+              fzf-lua
 
-            # ==> @theme
-            neovim-ayu
+              # ==> @theme
+              neovim-ayu
 
-            # ==> @tools
-            neorg
-          ]);
+              # ==> @tools
+              neorg
+            ]
+          );
 
           extraConfig = ''
             let mapleader = " "

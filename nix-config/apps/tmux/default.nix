@@ -17,6 +17,8 @@
 
         enable = true;
       };
+
+      home.packages = with pkgs; [ acpi ];
     };
 
     tags = [ "dev" ];

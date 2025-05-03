@@ -1,10 +1,6 @@
 {
   nix-config.apps.yazi = {
-    home = {
-      programs.yazi = {
-        enable = true;
-      };
-    };
+    home = { programs.yazi = { enable = true; }; };
 
     tags = [ "dev" ];
   };

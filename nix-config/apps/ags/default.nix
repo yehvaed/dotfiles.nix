@@ -1,5 +1,4 @@
-
-{ inputs, ...}: {
+{ inputs, ... }: {
   nix-config.apps.ags = {
     home = { pkgs, ... }: {
       programs.ags = {
@@ -14,7 +13,7 @@
           adwaita-icon-theme
           gnome-icon-theme
         ];
-        
+
         systemd.enable = true;
 
         enable = true;

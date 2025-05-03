@@ -1,8 +1,6 @@
-{ inputs, ...}: {
+{ inputs, ... }: {
   nix-config.apps.nix-index = {
-    nixos = { pkgs, ... }: {
-      programs.nix-index-database.comma.enable = true;
-    };
+    nixos = { pkgs, ... }: { programs.nix-index-database.comma.enable = true; };
 
     tags = [ "default" ];
   };

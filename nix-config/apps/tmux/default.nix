@@ -1,7 +1,7 @@
 {
   nix-config.apps.tmux = {
-    home = { pkgs, ... }@inputs: 
-      let 
+    home = { pkgs, ... }@inputs:
+      let
 
         inherit (pkgs.tmuxPlugins) mkTmuxPlugin;
         inherit (pkgs) fetchFromGitHub;
@@ -18,25 +18,29 @@
         };
 
       in {
-      programs.tmux = {
-        plugins = (import ./plugins/loader.nix inputs) (
-          with pkgs.tmuxPlugins; [ 
-            #themes
-            dotbar
+        programs.tmux = {
+          plugins = (import ./plugins/loader.nix inputs)
+            (with pkgs.tmuxPlugins; [
+              #themes
+              dotbar
 
-            # sections
-            battery 
-          ]
-        );
+              # sections
+              battery
+            ]);
 
-        terminal = "tmux-256color";
-        historyLimit = 100000;
+          extraConfig = ''
+            set-option -g renumber-windows on
+            set -g base-index 1
+            setw -g pane-base-index 1
+          '';
 
-        enable = true;
+          terminal = "tmux-256color";
+          historyLimit = 100000;
+          enable = true;
+        };
+
+        home.packages = with pkgs; [ acpi ];
       };
-
-      home.packages = with pkgs; [ acpi ];
-    };
 
     tags = [ "dev" ];
   };

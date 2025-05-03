@@ -1,0 +1,9 @@
+- ags: add battery widget,
+- zsh: refactor abbreviations to separate file,
+- zsh: refactor plugins loader to separate file,
+- add nixos wallpapaper,
+- tmux: refactor custom plugins to overlay
+- neovim: refactor language specific settings to separate files,
+- add app launcher,
+- hyprland: add window keybindings - to move apps, and move between apps,
+- hyprland: add workspaces keybindings - to move app between them

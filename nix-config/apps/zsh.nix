@@ -37,7 +37,11 @@ in {
 
         zsh-abbr = {
           enable = true;
-          abbreviations = { gl = "git pull"; };
+          abbreviations = { 
+            gl = "git pull";
+            gp = "git push";
+            gst = "git status";
+          };
         };
 
         enable = true;

@@ -1,2 +1,8 @@
 # nix builds
 result/
+
+# ags packages
+@girs/
+
+# others
+nohup.out

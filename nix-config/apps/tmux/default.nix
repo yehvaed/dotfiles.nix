@@ -22,7 +22,7 @@
           plugins = (import ./plugins/loader.nix inputs)
             (with pkgs.tmuxPlugins; [
               #themes
-              dotbar
+              catppuccin
 
               # sections
               battery

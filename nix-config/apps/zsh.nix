@@ -27,7 +27,7 @@ in {
     home = { pkgs, ... }: {
       programs.zsh = {
         plugins =
-          load (with pkgs; [ zsh-fzf-tab zsh-fzf-history-search zsh-f-sy-h zsh-vi-mode ]);
+          load (with pkgs; [ zsh-fzf-tab zsh-fzf-history-search zsh-f-sy-h  ]);
 
         oh-my-zsh = {
           enable = true;
@@ -38,10 +38,6 @@ in {
         zsh-abbr = {
           enable = true;
         };
-
-        initExtra = ''
-          abbr import-aliases --quiet
-        '';
 
         enable = true;
       };

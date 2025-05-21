@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, ... }:
 let inherit (builtins) readFile;
 in {
   imports = [ # Include the results of the hardware scan.

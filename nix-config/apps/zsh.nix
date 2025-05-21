@@ -27,7 +27,7 @@ in {
     home = { pkgs, ... }: {
       programs.zsh = {
         plugins =
-          load (with pkgs; [ zsh-fzf-tab zsh-fzf-history-search zsh-f-sy-h ]);
+          load (with pkgs; [ zsh-fzf-tab zsh-fzf-history-search zsh-f-sy-h zsh-vi-mode ]);
 
         oh-my-zsh = {
           enable = true;
@@ -37,12 +37,11 @@ in {
 
         zsh-abbr = {
           enable = true;
-          abbreviations = { 
-            gl = "git pull";
-            gp = "git push";
-            gst = "git status";
-          };
         };
+
+        initExtra = ''
+          abbr import-aliases --quiet
+        '';
 
         enable = true;
       };
